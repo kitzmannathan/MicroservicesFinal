@@ -39,7 +39,6 @@ class UserModel:
        query = f'insert into {self.TABLENAME} ' \
                f'(name, email, password) ' \
                f'values ("{params.get("name")}","{params.get("email")}","{params.get("password")}")'
-        # TODO: check if email is in use
        self.conn.execute(query)
        return "added"
 

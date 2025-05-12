@@ -27,7 +27,7 @@ def remove_item():
 
 @app.route("/deleteCart/<user_id>", methods=["DELETE"])
 def delete_cart(user_id):
-   return jsonify(CartService().delete_cart(user_id))
+   return CartService().delete_cart(user_id)
 
 
 if __name__ == "__main__":

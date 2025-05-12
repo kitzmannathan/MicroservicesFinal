@@ -93,6 +93,8 @@ function Home({loggedIn, userID, name, setLoggedIn}) {
         }
 
         await fetch(`${orderURL}/addItemsToOrder`, {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)})
+
+        await fetch(`${cartURL}/deleteCart/${userID}`, {method: "DELETE", headers: {'Content-Type': 'application/json'}})
     }
 
     return(

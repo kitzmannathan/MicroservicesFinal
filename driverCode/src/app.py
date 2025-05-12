@@ -4,33 +4,33 @@ import sys
 def create_data():
    if "users" in sys.argv:
       url = f'http://{customerURL}/createUser'
-      data = '{  "name": "testname", "email": "test@test.com", "password": "testpass"}'
+      data = '{  "name": "Nathan", "email": "nathan@test.com", "password": "password1"}'
       response = requests.post(url, data=data, headers={"Content-Type": "application/json"})
       print(response)
 
    if "product" in sys.argv:
       url = f'http://{productURL}/createProduct'
-      data = '{  "productID": 1, "name": "test1", "price": 5.67, "quantity": 1, "description": "This is product 1 description" }'
+      data = '{  "productID": 1, "name": "product1", "price": 5.67, "quantity": 1, "description": "This is product 1 description" }'
       response = requests.post(url, data=data, headers={"Content-Type": "application/json"})
       print(response)
 
       url = f'http://{productURL}/createProduct'
-      data = '{  "productID": 2, "name": "test2", "price": 50.50, "quantity": 1, "description": "This is product 2 description" }'
+      data = '{  "productID": 2, "name": "product2", "price": 50.50, "quantity": 1, "description": "This is product 2 description" }'
       response = requests.post(url, data=data, headers={"Content-Type": "application/json"})
       print(response)
 
       url = f'http://{productURL}/createProduct'
-      data = '{  "productID": 3, "name": "test3", "price": 0.99, "quantity": 1, "description": "This is product 3 description" }'
+      data = '{  "productID": 3, "name": "product3", "price": 0.99, "quantity": 1, "description": "This is product 3 description" }'
       response = requests.post(url, data=data, headers={"Content-Type": "application/json"})
       print(response)
 
       url = f'http://{productURL}/createProduct'
-      data = '{  "productID": 4, "name": "test4", "price": 1.20, "quantity": 1, "description": "This is product 4 description" }'
+      data = '{  "productID": 4, "name": "product4", "price": 1.20, "quantity": 1, "description": "This is product 4 description" }'
       response = requests.post(url, data=data, headers={"Content-Type": "application/json"})
       print(response)
 
       url = f'http://{productURL}/createProduct'
-      data = '{  "productID": 5, "name": "test5", "price": 123.45, "quantity": 1, "description": "This is product 5 description" }'
+      data = '{  "productID": 5, "name": "product5", "price": 123.45, "quantity": 1, "description": "This is product 5 description" }'
       response = requests.post(url, data=data, headers={"Content-Type": "application/json"})
       print(response)
 
@@ -43,10 +43,10 @@ if __name__ == "__main__":
    productURL = 'localhost:5003' if local else 'localhost:8003'
 
    if "data" in sys.argv:
-      create_data(cartURL)
+      create_data()
 
    if "updateShip" in sys.argv:
       url = f'http://{orderURL}/updateShipDate'
-      data = '{  "orderID": 1, "shipDate": "5/11/2025" }'
+      data = '{  "orderID": 1, "shipDate": "5/14/2025" }'
       response = requests.post(url, data=data, headers={"Content-Type": "application/json"})
       print(response)

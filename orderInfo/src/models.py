@@ -77,10 +77,7 @@ class OrderModel:
        return result
 
    def update_ship_date(self, params):
-       query = f"UPDATE " \
-               f"SET shipDate = {params.get('shipDate')} " \
-               f"from {self.ORDER_TABLE_NAME} " \
-               f"WHERE orderID = {params.get('orderID')}"
+       query = f"UPDATE {self.ORDER_TABLE_NAME} SET shipDate = \"{params.get('shipDate')}\" WHERE orderID = {params.get('orderID')}"
        self.conn.execute(query)
        return "changed"
 
