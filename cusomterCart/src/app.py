@@ -23,7 +23,7 @@ def get_cart(user_id):
 
 @app.route("/removeItemFromCart", methods=["DELETE"])
 def remove_item():
-   return jsonify(CartService().remove_item(request.get_json()))
+   return CartService().remove_item(request.get_json())
 
 @app.route("/deleteCart/<user_id>", methods=["DELETE"])
 def delete_cart(user_id):

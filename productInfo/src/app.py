@@ -15,7 +15,6 @@ def add_headers(response):
 
 @app.route("/createProduct", methods=["POST"])
 def create_product():
-   print(request.json)
    return ProductsService().create(request.get_json())
 
 @app.route("/getProduct/<product_id>", methods=["GET"])

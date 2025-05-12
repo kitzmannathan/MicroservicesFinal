@@ -18,3 +18,6 @@ class OrderService:
 
     def add_items_to_order(self, params):
         return self.model.add_items_to_order(params)
+
+    def get_user_orders(self, user_id):
+        return self.model.get_user_orders(user_id)

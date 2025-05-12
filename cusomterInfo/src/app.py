@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from service import UserService
 from models import Schema
+from urllib.parse import unquote
 
 import json
 
@@ -15,15 +16,21 @@ def add_headers(response):
 
 @app.route("/createUser", methods=["POST"])
 def create_user():
-   return jsonify(UserService().create(request.get_json()))
+   return UserService().create(request.get_json())
 
-@app.route("/getUser/<user_id>", methods=["GET"])
-def list_users(user_id):
-   return jsonify(UserService().get_user(user_id))
+@app.route("/getUser/<email>", methods=["GET"])
+def list_users(email):
+   return jsonify(UserService().get_user(unquote(email)))
 
 @app.route("/updateUser", methods=["POST"])
 def delete_user():
-   return jsonify(UserService().update_user(request.get_json()))
+   return UserService().update_user(request.get_json())
+
+@app.route("/verifyUser/<email>/<password>", methods=["GET"])
+def verify_user(email, password):
+
+   found = UserService().verify_user(unquote(email), password)
+   return "found" if found else "not found"
 
 
 if __name__ == "__main__":

@@ -18,6 +18,7 @@ class Schema:
        email TEXT,
        address TEXT,
        paymentInfo TEXT,
+       password TEXTS 
        );
        """
        self.conn.execute(query)
@@ -36,18 +37,15 @@ class UserModel:
 
    def create(self, params):
        query = f'insert into {self.TABLENAME} ' \
-               f'(Name, Email) ' \
-               f'values ("{params.get("name")}","{params.get("email")}")'
+               f'(name, email, password) ' \
+               f'values ("{params.get("name")}","{params.get("email")}","{params.get("password")}")'
+        # TODO: check if email is in use
+       self.conn.execute(query)
+       return "added"
 
-       result = self.conn.execute(query)
-       return result
-
-   def get_user(self, user_id):
-       query = f'SELECT * ' \
-               f'from {self.TABLENAME} ' \
-               f'where userID = {user_id}'
+   def get_user(self, email):
+       query = f"SELECT userID, name from {self.TABLENAME} where email =  \"{email}\""
        result_set = self.conn.execute(query).fetchall()
-       print (result_set)
        result = [{column: row[i]
                  for i, column in enumerate(result_set[0].keys())}
                  for row in result_set]
@@ -55,8 +53,13 @@ class UserModel:
 
    def update_user(self, params):
        query = f"UPDATE " \
-               f"SET  {params.get("column")} = {params.get("newValue")} " \
+               f"SET  {params.get('column')} = {params.get('newValue')} " \
                f"from {self.TABLENAME} " \
                f"WHERE userID = {params.get('userID')}"
        self.conn.execute(query)
-       return self.get_user(params.get('userID'))
+       return "updated"
+
+   def verify_user(self, email, password):
+       query = f"select * from {self.TABLENAME} WHERE email = \"{email}\" and password = \"{password}\""
+       result = self.conn.execute(query).fetchall()
+       return len(result) > 0

@@ -27,12 +27,15 @@ def update_item(order_id):
 
 @app.route("/updateShipDate", methods=["POST"])
 def get_item():
-   return jsonify(OrderService().update_ship_date(request.get_json()))
+   return OrderService().update_ship_date(request.get_json())
 
 @app.route("/addItemsToOrder", methods=["POST"])
 def add_items_to_order():
-   print(request.get_json())
    return OrderService().add_items_to_order(request.get_json())
+
+@app.route("/getUserOrders/<user_id>", methods=["GET"])
+def get_user_orders(user_id):
+   return OrderService().get_user_orders(user_id)
 
 
 if __name__ == "__main__":
